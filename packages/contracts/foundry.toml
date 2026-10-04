@@ -9,7 +9,7 @@ evm_version = "cancun"
 optimizer = true
 optimizer_runs = 1_000_000
 bytecode_hash = "none"
-fs_permissions = [{ access = "read", path = "./out" }]
+fs_permissions = [{ access = "read", path = "./out" }, { access = "read-write", path = "./deployments" }]
 gas_reports = ["UpfrontHook", "UpfrontLauncher"]
 
 # PositionManager is only compiled for tests and needs via-ir; everything else stays legacy.
