@@ -1,0 +1,42 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/contracts
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: foundry-rs/foundry-toolchain@v1
+      - run: forge build
+      - run: forge fmt --check
+      - name: ABIs are up to date
+        run: node script/export-abis.mjs --check
+      - name: Unit and fuzz tests, and invariants at 10,000 runs
+        run: forge test
+        env:
+          FOUNDRY_PROFILE: ci
+      - name: Gas snapshot
+        run: forge snapshot --check
+
+  indexer:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/indexer
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test

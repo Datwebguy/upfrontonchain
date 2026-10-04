@@ -87,9 +87,17 @@ eval "$(node ../config/print-env.ts robinhoodTestnet)"
 forge test --match-path 'test/fork/*' --fork-url $RH_TESTNET_RPC
 ```
 
-The website, app and indexer are not built yet. The planned stack:
-- website and app: Next.js, wagmi and viem,
-- history: an event indexer.
+Indexer (reads chain events into a small database and serves history, charts and totals):
+
+```bash
+cd packages/indexer
+npm ci
+INDEXER_NETWORK=robinhoodTestnet npm start      # serves on :8787
+```
+
+Until Upfront is deployed on a network, the indexer says so and every list is empty. Nothing is made up.
+
+The website and app are not built yet. The planned stack: Next.js, wagmi and viem.
 
 Advance settings differ between networks (testnet uses days where mainnet uses weeks) and are deployment parameters of `AdvanceDesk`.
 
@@ -101,6 +109,10 @@ forge test                                   # unit + fuzz + invariants
 FOUNDRY_PROFILE=ci forge test                # 10,000 runs
 forge fmt --check
 forge snapshot --check                       # gas
+
+cd ../indexer
+npm test
+npm run test:e2e                             # a real deployment on a local fork, checked against the chain
 ```
 
 The test plan, including fuzzing, invariants and fork tests against Robinhood Chain testnet, is in [BUILD_SPEC.md](BUILD_SPEC.md) §11 and [SECURITY.md](SECURITY.md) §2.

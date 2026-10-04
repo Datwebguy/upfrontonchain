@@ -57,6 +57,18 @@ forge test --match-path 'test/fork/*' --fork-url $RH_TESTNET_RPC
 forge snapshot --check                       # gas
 slither .                                    # static analysis
 
+# abis (generated from the compiled contracts; never edit packages/config/abis.ts by hand)
+cd packages/contracts
+forge build && node script/export-abis.mjs
+node script/export-abis.mjs --check          # fails if abis.ts is out of date
+
+# indexer
+cd packages/indexer
+npm ci
+npm run typecheck
+npm test
+npm run test:e2e                             # needs Foundry and: eval "$(node ../config/print-env.ts robinhoodTestnet)"
+
 # web
 cd packages/web
 npm ci
