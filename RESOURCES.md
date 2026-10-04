@@ -92,6 +92,30 @@ The explorer also lists Edel lending receipt tokens (eTSLA, variableDebtTSLA and
 
 ## Arbitrum
 
+**Official hackathon resources** (from the HackQuest page):
+- Get started: https://docs.arbitrum.io/welcome/get-started
+- Gentle introduction: https://docs.arbitrum.io/welcome/arbitrum-gentle-introduction
+- Solidity quickstart: https://docs.arbitrum.io/build-decentralized-apps/quickstart-solidity-remix
+- Oracles: https://docs.arbitrum.io/for-devs/oracles/oracles-content-map
+- FAQ: https://docs.arbitrum.io/learn-more/faq
+- Stylus quickstart: https://docs.arbitrum.io/stylus/quickstart
+- Local Nitro dev node: https://docs.arbitrum.io/run-arbitrum-node/run-nitro-dev-node
+- ZeroDev (smart accounts): https://docs.zerodev.app/
+- Arbitrum SDK: https://github.com/OffchainLabs/arbitrum-sdk
+- Stylus by Example: https://stylus-by-example.org
+- Stylus CLI: https://github.com/OffchainLabs/cargo-stylus
+- Stylus Rust SDK: https://github.com/OffchainLabs/stylus-sdk-rs
+- OpenZeppelin Rust contracts: https://github.com/OpenZeppelin/rust-contracts-stylus
+
+**Faucets:**
+- Arbitrum Sepolia ETH: https://arbitrum.faucet.dev/, https://faucet.quicknode.com/arbitrum/sepolia, https://www.l2faucet.com/arbitrum
+- Ethereum Sepolia ETH (then bridge): https://sepoliafaucet.com/, https://www.infura.io/faucet/sepolia, https://sepolia-faucet.pk910.de/
+- Test USDG: https://faucet.paxos.com/
+- Robinhood Chain: https://faucet.testnet.chain.robinhood.com/
+
+**Arbitrum One RPCs:** https://arb1.arbitrum.io/rpc, https://rpc.ankr.com/arbitrum, https://arbitrum.llamarpc.com
+
+
 - Stylus: https://docs.arbitrum.io/stylus/gentle-introduction
 - Bridge: https://bridge.arbitrum.io
 - Arbitrum Sepolia explorer: https://sepolia.arbiscan.io

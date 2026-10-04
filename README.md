@@ -2,9 +2,9 @@
 
 **Every trade in your pool pays you, and you can get those earnings upfront.**
 
-Upfront launches trading pools on Robinhood Chain that pay their owners a fee on every trade, in USDG. Once a pool has a track record, its owner can get part of its future earnings today, repaid automatically from a share of new fees.
+Upfront launches trading pools on Arbitrum and Robinhood Chain that pay their owners a fee on every trade, in USDG. Once a pool has a track record, its owner can get part of its future earnings today, repaid automatically from a share of new fees.
 
-[@upfrontonchain](https://x.com/upfrontonchain) · Built on Robinhood Chain · Paid in USDG
+[@upfrontonchain](https://x.com/upfrontonchain) · Built on Arbitrum and Robinhood Chain · Paid in USDG
 
 > **Status:** in development. Nothing is deployed yet. Contract addresses will be listed under [Deployments](#deployments) once they're live.
 
@@ -53,10 +53,8 @@ Not deployed yet. Each address will link to its explorer page once live.
 
 | Network | Contract | Address |
 |---|---|---|
-| Robinhood Chain testnet (46630) | UpfrontHook | — |
-| Robinhood Chain testnet (46630) | UpfrontLauncher | — |
-| Robinhood Chain testnet (46630) | AdvanceDesk | — |
-| Robinhood Chain testnet (46630) | LenderVault | — |
+| Arbitrum Sepolia (421614) | UpfrontHook · UpfrontLauncher · AdvanceDesk · LenderVault | — |
+| Robinhood Chain testnet (46630) | UpfrontHook · UpfrontLauncher · AdvanceDesk · LenderVault | — |
 
 External contracts Upfront uses (Uniswap v4, USDG) are listed and verified in [RESOURCES.md](RESOURCES.md).
 

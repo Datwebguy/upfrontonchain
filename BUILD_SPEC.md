@@ -4,7 +4,7 @@
 
 **Pitch:** *"Upfront: every trade in your pool pays you, and you can get those earnings upfront."*
 
-**Network:** Robinhood Chain (an Arbitrum chain). **Currency:** Paxos USDG.
+**Networks:** Arbitrum (Sepolia now, Arbitrum One next) and Robinhood Chain (an Arbitrum chain). The same contracts are deployed on both. **Currency:** Paxos USDG.
 
 **First milestone:** Arbitrum Open House Singapore. **Horizon:** a company, not a demo.
 
@@ -201,8 +201,8 @@ All addresses are in `RESOURCES.md`, checked on-chain on 4 Oct 2026.
 
 | Stage | Network | Notes |
 |---|---|---|
-| Build and demo | Robinhood Chain testnet (46630) | Uniswap v4 and USDG (`0x7E95…802F`, 6 decimals) are live; stock tokens from the faucet |
-| Backup | Arbitrum Sepolia (421614) | Uniswap v4 and USDG live |
+| Build and demo (primary) | Arbitrum Sepolia (421614) | Uniswap v4 and USDG (`0xFFC9…1892`, 6 decimals) are live. Meets the hackathon's "deploy on Arbitrum" requirement. |
+| Build and demo (primary) | Robinhood Chain testnet (46630) | Uniswap v4 and USDG (`0x7E95…802F`, 6 decimals) are live; stock tokens from the faucet. Qualifies for the reserved Robinhood Chain place. |
 | Launch | Robinhood Chain mainnet (4663) | After audit (`SECURITY.md`) |
 
 ## 10. Data rules (no hardcoding, no mock data)
@@ -298,7 +298,7 @@ Every step is real testnet activity. Start trading the demo pool at least one da
 
 ## 16. Submission checklist
 
-- [ ] Deployed on Robinhood Chain testnet (and Arbitrum Sepolia), with explorer links
+- [ ] Deployed on **both** Arbitrum Sepolia and Robinhood Chain testnet, with explorer links
 - [ ] Public repo, MIT, `.env.example` only, CI green
 - [ ] README per §12
 - [ ] Demo video under 3 minutes, plus a backup

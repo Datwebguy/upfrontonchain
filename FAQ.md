@@ -35,13 +35,13 @@ Lenders deposit USDG. That money funds the upfront offers, and each one is repai
 A pool's trading can slow down or stop, so an advance can be repaid late or not in full. Advances are sized on a pool's weakest recent weeks to limit this, but lending always carries risk.
 
 **Which network is Upfront on?**
-Robinhood Chain, an Arbitrum chain. All fees and payouts are in USDG, the Paxos dollar.
+Arbitrum and Robinhood Chain (an Arbitrum chain). All fees and payouts are in USDG, the Paxos dollar.
 
 **Which tokens can I launch a pool for?**
 Any token, paired with USDG, including Robinhood stock tokens.
 
 **Do I need to hold ETH?**
-A small amount, for network fees on Robinhood Chain.
+A small amount, for network fees.
 
 **Can Upfront change my pool after launch?**
 No. Your fee can only go down, and only by you. Your split can't change. Nobody, including us, can move your balance.
