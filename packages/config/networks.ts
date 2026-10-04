@@ -66,7 +66,14 @@ export const networks = {
     // Source: https://docs.paxos.com/guides/stablecoin/usdg/testnet
     usdg: "0x7E955252E15c84f5768B83c41a71F9eba181802F",
     usdgDecimals: 6,
-    upfront: null,
+    // Deployed with packages/contracts/script/Deploy.s.sol. Record: packages/contracts/deployments/46630.json
+    upfront: {
+      hook: "0x5CC2a9f05516fBc5B8C52b19BA40E1D111d760CC",
+      launcher: "0x2b8b153cA7E6001531770Eeb22ab2dDc81647742",
+      advanceDesk: "0x507a1Bf69af37397Aa0273f9BF7dFcf909792b09",
+      lenderVault: "0x6B686695f99899f170E34A518395430557b1A663",
+      startBlock: 128775924,
+    },
   },
   robinhoodMainnet: {
     name: "Robinhood Chain",

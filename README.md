@@ -54,7 +54,10 @@ Not deployed yet. Each address will link to its explorer page once live.
 | Network | Contract | Address |
 |---|---|---|
 | Arbitrum Sepolia (421614) | UpfrontHook · UpfrontLauncher · AdvanceDesk · LenderVault | — |
-| Robinhood Chain testnet (46630) | UpfrontHook · UpfrontLauncher · AdvanceDesk · LenderVault | — |
+| Robinhood Chain testnet (46630) | UpfrontHook | [0x5CC2…60CC](https://explorer.testnet.chain.robinhood.com/address/0x5CC2a9f05516fBc5B8C52b19BA40E1D111d760CC) |
+| | UpfrontLauncher | [0x2b8b…7742](https://explorer.testnet.chain.robinhood.com/address/0x2b8b153cA7E6001531770Eeb22ab2dDc81647742) |
+| | AdvanceDesk | [0x507a…2b09](https://explorer.testnet.chain.robinhood.com/address/0x507a1Bf69af37397Aa0273f9BF7dFcf909792b09) |
+| | LenderVault | [0x6B68…A663](https://explorer.testnet.chain.robinhood.com/address/0x6B686695f99899f170E34A518395430557b1A663) |
 
 External contracts Upfront uses (Uniswap v4, USDG) are listed and verified in [RESOURCES.md](RESOURCES.md).
 
