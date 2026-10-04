@@ -70,7 +70,7 @@ abstract contract UpfrontBase is PosmTestSetup {
         launcher = new UpfrontLauncher(
             manager, IPositionManager(address(lpm)), IAllowanceTransfer(address(permit2)), upfront, admin, PROTOCOL_BPS
         );
-        upfront.wire(address(launcher), desk);
+        _wireDesk();
 
         usdgToken.mint(address(this), 1e30);
         stock.mint(address(this), 1e40);
@@ -80,6 +80,11 @@ abstract contract UpfrontBase is PosmTestSetup {
         stock.approve(address(swapRouter), type(uint256).max);
 
         (poolKey, poolId) = _launch(FEE_BPS, 6000, 2000, 1000);
+    }
+
+    /// @dev Wires the hook to its advance desk. Tests that need the real desk override this.
+    function _wireDesk() internal virtual {
+        upfront.wire(address(launcher), desk);
     }
 
     function _params(uint16 feeBps, uint16 ownerBps, uint16 appBps, uint16 referrerBps)
