@@ -25,10 +25,12 @@ struct PoolConfig {
 struct PoolState {
     /// @notice The app the pool was launched for. Zero only when `appBps` is zero.
     address app;
-    /// @notice Lifetime owner earnings in USDG (6 decimals), before any repayment is taken.
-    uint88 ownerEarned;
+    /// @notice Lifetime owner earnings in USDG (6 decimals), before any repayment is taken. Saturates.
+    uint56 ownerEarned;
     /// @notice True while an advance is open. Mirrors `Advance.open` so swaps skip the advance slot otherwise.
     bool advanceOpen;
+    /// @notice The day the pool was registered (block.timestamp / 1 days). Used for the minimum-history rule.
+    uint32 registeredDay;
 }
 
 /// @notice An open or closed advance, as tracked by the hook. One slot.

@@ -60,4 +60,30 @@ interface UpfrontErrors {
     // --- admin (BUILD_SPEC §4.8) ---
     /// @notice A setting is outside its hard bound.
     error OutOfBounds();
+
+    // --- vault and desk ---
+    /// @notice Caller is not the AdvanceDesk the vault is wired to.
+    error NotVaultDesk();
+    /// @notice The vault's desk is already set.
+    error DeskAlreadySet();
+    /// @notice Caller is not the address allowed to wire the vault at deployment.
+    error NotVaultWirer();
+    /// @notice The vault has less idle USDG than requested.
+    error VaultLiquidityLow();
+    /// @notice New advances are paused. Swaps, claims and repayments keep working.
+    error AdvancesPaused();
+    /// @notice Caller is not the advance admin.
+    error NotAdvanceAdmin();
+    /// @notice The pool is too new for an advance.
+    error HistoryTooShort();
+    /// @notice The pool's weakest recent period earned less than the minimum.
+    error EarningsTooLow();
+    /// @notice The offer is smaller than the owner asked for, or costs more.
+    error OfferChanged();
+    /// @notice The previous advance on this pool still has repayments to settle.
+    error SettleFirst();
+    /// @notice There is no repayment to settle.
+    error NothingToSettle();
+    /// @notice The advance is not late enough to write off.
+    error NotWrittenOffYet();
 }

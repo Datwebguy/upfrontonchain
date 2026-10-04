@@ -83,4 +83,45 @@ interface UpfrontEvents {
 
     /// @notice The protocol share for future pools changed.
     event ProtocolShareSet(uint16 oldShareBps, uint16 newShareBps);
+
+    // --- LenderVault ---
+
+    /// @notice The vault was wired to its advance desk. Happens once.
+    event VaultWired(address indexed desk);
+
+    /// @notice USDG left the vault as an accepted advance.
+    event AdvanceFunded(PoolId indexed poolId, address indexed to, uint256 amount);
+
+    /// @notice A repayment reached the vault: `principal` restores outstanding advances, `lenderFee` is earnings.
+    event RepaymentReceived(PoolId indexed poolId, uint256 principal, uint256 lenderFee);
+
+    /// @notice Unrepaid principal was written off and is now a loss for lenders.
+    event WrittenOff(PoolId indexed poolId, uint256 amount);
+
+    // --- AdvanceDesk ---
+
+    /// @notice An owner accepted an offer and received USDG.
+    event AdvanceAccepted(
+        PoolId indexed poolId,
+        address indexed owner,
+        uint256 principal,
+        uint256 totalDue,
+        uint16 flatFeeBps,
+        uint16 repayShareBps,
+        uint40 behindAt
+    );
+
+    /// @notice Repayments were sent on to the vault and the protocol.
+    event RepaymentSettled(
+        PoolId indexed poolId, uint256 amount, uint256 principalPart, uint256 lenderFee, uint256 protocolFee
+    );
+
+    /// @notice An advance was written off after staying unpaid long past its schedule.
+    event AdvanceWrittenOff(PoolId indexed poolId, uint256 lostPrincipal);
+
+    /// @notice New advances were paused or resumed.
+    event AdvancesPausedSet(bool paused);
+
+    /// @notice Offer settings for future advances changed.
+    event OfferSettingsSet(uint256 poolCap, uint16 maxVaultShareBps, uint16 repayShareBps);
 }

@@ -55,6 +55,73 @@ library RevenueMath {
     }
 
     // ---------------------------------------------------------------------
+    // Offers (BUILD_SPEC §7)
+    // ---------------------------------------------------------------------
+
+    /// @notice Lowest and total owner earnings across the last `periods` complete periods.
+    /// @dev `amounts[0]` is today and is skipped because today is not complete. Period 0 is the most recent complete
+    ///      one: days 1..periodDays ago. The window must fit the 35-day buffer, so `periods * periodDays <= 34`.
+    ///      Bounded loops over a fixed-size window. Only used in views and `acceptOffer`, never in a swap.
+    function weakestPeriod(uint256[35] memory amounts, uint256 periodDays, uint256 periods)
+        internal
+        pure
+        returns (uint256 weakest, uint256 total)
+    {
+        weakest = type(uint256).max;
+        for (uint256 p; p < periods; ++p) {
+            uint256 sum;
+            for (uint256 d = 1; d <= periodDays; ++d) {
+                sum += amounts[p * periodDays + d];
+            }
+            total += sum;
+            if (sum < weakest) weakest = sum;
+        }
+        if (periods == 0) weakest = 0;
+    }
+
+    /// @notice The flat fee in basis points: from `minBps` when earnings are perfectly steady to `maxBps` when the
+    ///         weakest period is nothing (BUILD_SPEC §7: "lower when weekly earnings are steadier").
+    /// @dev Steadiness is weakest / average, capped at 100%. Rounds up, in the lenders' favour.
+    function flatFeeBps(uint256 weakest, uint256 total, uint256 periods, uint256 minBps, uint256 maxBps)
+        internal
+        pure
+        returns (uint256)
+    {
+        if (total == 0) return maxBps;
+        uint256 steadiness = weakest * periods * BPS / total; // weakest <= total / periods, so <= BPS
+        if (steadiness > BPS) steadiness = BPS;
+        uint256 discount = (maxBps - minBps) * steadiness / BPS; // rounds down, so the fee rounds up
+        return maxBps - discount;
+    }
+
+    /// @notice The advance principal: `weakest * multiplier`, capped by the pool cap and by a share of the vault's
+    ///         idle USDG.
+    function offerAmount(
+        uint256 weakest,
+        uint256 multiplier,
+        uint256 poolCap,
+        uint256 vaultIdle,
+        uint256 maxVaultShareBps
+    ) internal pure returns (uint256 amount) {
+        amount = weakest * multiplier;
+        if (amount > poolCap) amount = poolCap;
+        uint256 vaultLimit = vaultIdle * maxVaultShareBps / BPS;
+        if (amount > vaultLimit) amount = vaultLimit;
+    }
+
+    /// @notice Principal plus the flat fee. Rounds up, in the lenders' favour.
+    function totalDue(uint256 principal, uint256 flatBps) internal pure returns (uint256) {
+        return (principal * (BPS + flatBps) + BPS - 1) / BPS;
+    }
+
+    /// @notice How much of the cumulative `repaid` has gone to principal. Rounds up, so principal is returned
+    ///         first-ish and the vault is never short. Equals `principal` exactly once `repaid == due`.
+    function principalPaid(uint256 repaid, uint256 principal, uint256 due) internal pure returns (uint256) {
+        if (repaid >= due) return principal;
+        return (repaid * principal + due - 1) / due;
+    }
+
+    // ---------------------------------------------------------------------
     // Daily earnings buckets
     // ---------------------------------------------------------------------
 

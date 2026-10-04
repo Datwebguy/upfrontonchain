@@ -221,7 +221,7 @@ contract UpfrontHook is BaseHook, IUnlockCallback, ReentrancyGuardTransient, Upf
         uint32 day = RevenueMath.dayOf(block.timestamp);
         uint256 slot = RevenueMath.slotOf(day);
         _days[id][slot] = RevenueMath.addToBucket(_days[id][slot], day, ownerGross);
-        st.ownerEarned = _saturatingAdd88(st.ownerEarned, ownerGross);
+        st.ownerEarned = _saturatingAdd56(st.ownerEarned, ownerGross);
         _states[id] = st;
 
         // Pure balance update inside the PoolManager. No token moves (rule 4).
@@ -278,9 +278,9 @@ contract UpfrontHook is BaseHook, IUnlockCallback, ReentrancyGuardTransient, Upf
     }
 
     /// @dev Lifetime earnings saturate instead of overflowing so a swap can never fail on them (rule 4).
-    function _saturatingAdd88(uint88 a, uint256 b) internal pure returns (uint88) {
-        uint256 sum = uint256(a) + b; // a < 2^88, b < 2^128: no overflow
-        return sum > type(uint88).max ? type(uint88).max : uint88(sum);
+    function _saturatingAdd56(uint56 a, uint256 b) internal pure returns (uint56) {
+        uint256 sum = uint256(a) + b; // a < 2^56, b < 2^128: no overflow
+        return sum > type(uint56).max ? type(uint56).max : uint56(sum);
     }
 
     // ---------------------------------------------------------------------
@@ -341,7 +341,9 @@ contract UpfrontHook is BaseHook, IUnlockCallback, ReentrancyGuardTransient, Upf
         PoolId id = key.toId();
         if (_configs[id].owner != address(0)) revert PoolAlreadyRegistered();
         _configs[id] = cfg;
-        _states[id] = PoolState({app: app, ownerEarned: 0, advanceOpen: false});
+        _states[id] = PoolState({
+            app: app, ownerEarned: 0, advanceOpen: false, registeredDay: RevenueMath.dayOf(block.timestamp)
+        });
 
         emit PoolRegistered(
             id, cfg.owner, app, cfg.upfrontFeeBps, cfg.ownerBps, cfg.appBps, cfg.referrerBps, cfg.protocolBps
