@@ -55,7 +55,7 @@
 
 | Role | Font | Notes |
 |---|---|---|
-| Display (headlines, logo) | **Bricolage Grotesque** (600–800) | Characterful without being loud. Tight tracking on big sizes. |
+| Display (headlines, logo) | **Manrope** (600–800) | Clean and confident. Tight tracking on big sizes. |
 | Body and UI | **Geist** (400–600) | Clean, very readable at small sizes |
 | Numbers | **Geist Mono** with tabular figures | Every amount, fee and percentage, so numbers line up and don't jump while counting |
 | Accent (rare) | **Instrument Serif** italic | One word per headline at most, for emphasis, e.g. "Get paid *upfront*." |

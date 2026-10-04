@@ -100,6 +100,12 @@ export interface HonestFees {
   mismatches: number;
 }
 
+export interface LenderFlows {
+  address: string;
+  deposited: string;
+  withdrawn: string;
+}
+
 export interface Health {
   network: string;
   chainId: number;
@@ -136,6 +142,7 @@ export const indexer = {
   pool: (id: string) => get<PoolDetail>(`/pools/${id}`),
   earnings: (id: string, days = 35) => get<{ days: DayEarnings[] }>(`/pools/${id}/earnings?days=${days}`),
   trades: (id: string, limit = 20) => get<{ trades: Trade[] }>(`/pools/${id}/trades?limit=${limit}`),
+  lender: (address: string) => get<LenderFlows>(`/lenders/${address}`),
   lendSummary: () => get<LendSummary>("/lend/summary"),
   lendAdvances: () => get<{ deployed: boolean; advances: Advance[] }>("/lend/advances"),
 };

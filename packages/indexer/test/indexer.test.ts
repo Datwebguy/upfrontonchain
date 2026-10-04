@@ -149,6 +149,23 @@ test("a second advance on the same pool starts counting from zero", () => {
   assert.equal(a[1].repaid, "1400000");
 });
 
+test("a lender's deposits and withdrawals add up per address", () => {
+  const db = openDb(":memory:");
+  const other = "0x00000000000000000000000000000000000000c2";
+  const me = "0x00000000000000000000000000000000000000C1"; // checksummed or not, it matches
+  transaction(db, () => {
+    applyEvent(db, ev("lenderVault", "Deposit", { sender: me, owner: me, assets: 500_000_000n, shares: 1n }, 200), 1);
+    applyEvent(db, ev("lenderVault", "Deposit", { sender: other, owner: other, assets: 9_000_000n, shares: 1n }, 201), 1);
+    applyEvent(db, ev("lenderVault", "Withdraw", { sender: me, receiver: me, owner: me, assets: 100_000_000n, shares: 1n }, 202), 1);
+  });
+  const mine = get(db, `/lenders/${me}`).body as any;
+  assert.deepEqual(mine, { address: me.toLowerCase(), deposited: "500000000", withdrawn: "100000000" });
+  assert.equal((get(db, `/lenders/${other}`).body as any).deposited, "9000000");
+  assert.equal((get(db, "/lenders/0x00000000000000000000000000000000000000d1").body as any).deposited, "0");
+  assert.equal(get(db, "/lenders/nope").status, 400);
+  assert.equal((get(db, "/totals").body as any).trades, 0);
+});
+
 test("a fee for a pool the indexer never saw stops the run loudly", () => {
   const db = openDb(":memory:");
   assert.throws(() => applyEvent(db, feeTaken(5, 1n, { owner: 1n, app: 0n, referrer: 0n, protocol: 0n, repay: 0n }), 1), /has not seen/);

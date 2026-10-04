@@ -7,6 +7,7 @@ import {
   getPool,
   honestFees,
   lendSummary,
+  lenderFlows,
   listPools,
   poolTrades,
   recentTrades,
@@ -72,6 +73,12 @@ export function route(db: Db, cfg: IndexerConfig, state: SyncState, url: URL): A
         offset: clamp(q.get("offset"), 0, 1_000_000),
       }),
     });
+  }
+
+  const lender = /^\/lenders\/([^/]+)$/.exec(p);
+  if (lender) {
+    if (!ADDRESS.test(lender[1] as string)) return bad("address must be an address");
+    return ok(lenderFlows(db, lender[1] as string));
   }
 
   const pool = /^\/pools\/([^/]+)(?:\/(earnings|trades))?$/.exec(p);

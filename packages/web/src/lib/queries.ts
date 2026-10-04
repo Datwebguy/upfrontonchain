@@ -17,3 +17,5 @@ export const useEarnings = (id: string) => useQuery({ queryKey: ["earnings", id]
 export const usePoolTrades = (id: string) => useQuery({ queryKey: ["pool-trades", id], queryFn: () => indexer.trades(id), refetchInterval: LIVE });
 export const useLendSummary = () => useQuery({ queryKey: ["lend-summary"], queryFn: indexer.lendSummary, refetchInterval: LIVE });
 export const useLendAdvances = () => useQuery({ queryKey: ["lend-advances"], queryFn: indexer.lendAdvances, refetchInterval: LIVE });
+export const useLender = (address?: string) =>
+  useQuery({ queryKey: ["lender", address], queryFn: () => indexer.lender(address!), enabled: !!address, refetchInterval: LIVE });

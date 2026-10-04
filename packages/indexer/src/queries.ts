@@ -238,3 +238,20 @@ export function lendSummary(db: Db) {
     advances: advances.length,
   };
 }
+
+/** What one address has put into the vault and taken out, from the vault's own Deposit and Withdraw events. */
+export function lenderFlows(db: Db, address: string) {
+  const rows = db
+    .prepare(
+      "SELECT name, args FROM events WHERE name IN ('Deposit', 'Withdraw') AND lower(json_extract(args, '$.owner')) = ? ORDER BY id",
+    )
+    .all(address.toLowerCase()) as { name: string; args: string }[];
+  let deposited = 0n;
+  let withdrawn = 0n;
+  for (const r of rows) {
+    const assets = BigInt((JSON.parse(r.args) as { assets: string }).assets);
+    if (r.name === "Deposit") deposited += assets;
+    else withdrawn += assets;
+  }
+  return { address: address.toLowerCase(), deposited: deposited.toString(), withdrawn: withdrawn.toString() };
+}

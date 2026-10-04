@@ -34,7 +34,10 @@
   color-scheme: light;
 }
 
-/* The app has light and dark themes. */
+/*
+ * The app has light and dark themes. `data-theme` is "light", "dark" or "system" (follow the device). It is kept in a
+ * cookie so the server renders the right theme and nothing flashes.
+ */
 [data-theme="dark"] {
   --bg: var(--ink);
   --card: var(--card-dark);
@@ -44,6 +47,19 @@
   --accent-text: var(--signal);
   --positive: var(--moss-light);
   color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="system"] {
+    --bg: var(--ink);
+    --card: var(--card-dark);
+    --fg: var(--bone);
+    --muted: var(--muted-dark);
+    --border: var(--line-dark);
+    --accent-text: var(--signal);
+    --positive: var(--moss-light);
+    color-scheme: dark;
+  }
 }
 
 @theme inline {
@@ -66,10 +82,26 @@
   --color-accent: var(--accent-text);
   --color-positive: var(--positive);
 
-  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display-face), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
   --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
+}
+
+/* Show the sun in dark mode and the moon in light mode, without waiting for JavaScript. */
+[data-theme="dark"] .dark-hidden {
+  display: none;
+}
+[data-theme="dark"] .dark-visible {
+  display: block;
+}
+@media (prefers-color-scheme: dark) {
+  [data-theme="system"] .dark-hidden {
+    display: none;
+  }
+  [data-theme="system"] .dark-visible {
+    display: block;
+  }
 }
 
 html {

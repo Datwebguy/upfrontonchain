@@ -135,6 +135,8 @@ export const links = {
   github: "https://github.com/Datwebguy/upfrontonchain",
   /** Source: README.md. */
   x: "https://x.com/upfrontonchain",
+  /** Source: https://developer.x.com/en/docs/x-for-websites/web-intent/overview */
+  xShare: "https://x.com/intent/post",
   /** Source: https://docs.robinhood.com/chain/ */
   robinhoodChainDocs: "https://docs.robinhood.com/chain/",
   /** Source: https://docs.paxos.com/guides/stablecoin/usdg/testnet */

@@ -17,6 +17,7 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "check:contrast": "node scripts/contrast.mjs",
+    "test": "node --test tests/unit/*.test.ts",
     "test:e2e": "playwright test"
   },
   "dependencies": {
