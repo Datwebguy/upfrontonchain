@@ -60,12 +60,30 @@ External contracts Upfront uses (Uniswap v4, USDG) are listed and verified in [R
 
 ## Run it locally
 
-Setup steps will be added with the code. The planned stack:
-- contracts: Foundry,
+Contracts (Foundry):
+
+```bash
+git clone --recurse-submodules https://github.com/Datwebguy/upfrontonchain
+cd upfrontonchain/packages/contracts
+forge build
+forge test
+```
+
+The website, app and indexer are not built yet. The planned stack:
 - website and app: Next.js, wagmi and viem,
 - history: an event indexer.
 
+Advance settings differ between networks (testnet uses days where mainnet uses weeks) and are deployment parameters of `AdvanceDesk`.
+
 ## Tests
+
+```bash
+cd packages/contracts
+forge test                                   # unit + fuzz + invariants
+FOUNDRY_PROFILE=ci forge test                # 10,000 runs
+forge fmt --check
+forge snapshot --check                       # gas
+```
 
 The test plan, including fuzzing, invariants and fork tests against Robinhood Chain testnet, is in [BUILD_SPEC.md](BUILD_SPEC.md) §11 and [SECURITY.md](SECURITY.md) §2.
 

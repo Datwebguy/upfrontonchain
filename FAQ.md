@@ -17,7 +17,7 @@ Launch a pool and choose its Upfront fee. Every trade in your pool pays that fee
 After your pool has earned for a while, you get an offer: USDG now, repaid from a share of your future fees. You don't make payments. Every new trade repays a little until it's done. Then your full earnings come back to you.
 
 **What happens if my pool earns less than expected?**
-Repayment just slows down. There's no interest clock and no collateral taken. If repayment falls far behind schedule, a larger share of your fees goes to repayment until it's caught up.
+Repayment just slows down. There's no interest clock and no collateral taken. If repayment falls far behind schedule, a larger share of your fees goes to repayment until it's caught up. If an advance is still unpaid about six months after its schedule, it's written off. That's a loss for lenders, and your pool is unlocked.
 
 **How is my offer calculated?**
 From your pool's own earnings, using its weakest recent week, so a single good day can't inflate it. Offers last 24 hours and are recalculated each time.

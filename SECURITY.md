@@ -43,6 +43,7 @@ Each one is a Foundry invariant test, run with at least 10,000 runs in CI.
 | Owner escapes repayment by moving traders | Small advances sized on the weakest week; public repayment record per owner; behind-schedule rule |
 | Owner transfers the pool to dodge repayment | Ownership locked while an advance is open (I-6) |
 | Fake earnings to inflate offers (wash trading) | Offers use the **weakest** week; the fee paid on wash trades is a real cost to the washer; cap per pool; cap share of vault; eligibility needs a minimum history |
+| Advance never repaid | Sized on the weakest period; behind-schedule rule sends the owner's whole share to repayment; after 180 days past the schedule anyone can write it off, which unlocks ownership and is a loss for lenders (vault `outstanding` falls, share price falls) |
 | Liquidity pulled after an advance | Sizing rules; future: optional liquidity lock as collateral for larger advances |
 | Admin key compromise | Admin is a multisig; it can only change future-offer settings within hard bounds and pause new advances; it can't touch balances, live pools or swaps |
 | Hook address flag mismatch | Salt mined for exact flags; a deploy script asserts the flags; test checks the permissions |
