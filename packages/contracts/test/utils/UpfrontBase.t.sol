@@ -19,16 +19,13 @@ import {PosmTestSetup} from "@uniswap/v4-periphery/test/shared/PosmTestSetup.sol
 import {IAllowanceTransfer} from "permit2/src/interfaces/IAllowanceTransfer.sol";
 import {MockERC20} from "solmate/src/test/utils/mocks/MockERC20.sol";
 
+import {DeployLogic} from "../../script/DeployLogic.sol";
 import {UpfrontHook} from "../../src/UpfrontHook.sol";
 import {LaunchParams, UpfrontLauncher} from "../../src/UpfrontLauncher.sol";
 
 /// @dev Test fixtures live here only and never ship (AGENTS.md rule 9).
-abstract contract UpfrontBase is PosmTestSetup {
-    uint160 internal constant HOOK_FLAGS = uint160(
-        Hooks.BEFORE_INITIALIZE_FLAG | Hooks.BEFORE_SWAP_FLAG | Hooks.AFTER_SWAP_FLAG
-            | Hooks.BEFORE_SWAP_RETURNS_DELTA_FLAG | Hooks.AFTER_SWAP_RETURNS_DELTA_FLAG
-    );
-
+/// @dev Inherits DeployLogic so the tests use the very flags the deploy script asserts.
+abstract contract UpfrontBase is PosmTestSetup, DeployLogic {
     MockERC20 internal usdgToken;
     MockERC20 internal stock;
     Currency internal usdgC;
