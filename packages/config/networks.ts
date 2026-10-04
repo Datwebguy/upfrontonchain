@@ -124,6 +124,23 @@ export const robinhoodTestnetStockTokens = [
 /** Robinhood's live stock-token list for mainnet. Source: https://api.robinhood.com/rhj/assets */
 export const robinhoodAssetsApiUrl = "https://api.robinhood.com/rhj/assets";
 
+/** Where the indexer listens when run locally (`npm start` in packages/indexer). Deployments set their own. */
+export const localIndexerUrl = "http://localhost:8787";
+
+/**
+ * Links the website and app point to. Kept here with the addresses so no URL is typed anywhere else (AGENTS.md rule 10).
+ */
+export const links = {
+  /** Source: this repository. */
+  github: "https://github.com/Datwebguy/upfrontonchain",
+  /** Source: README.md. */
+  x: "https://x.com/upfrontonchain",
+  /** Source: https://docs.robinhood.com/chain/ */
+  robinhoodChainDocs: "https://docs.robinhood.com/chain/",
+  /** Source: https://docs.paxos.com/guides/stablecoin/usdg/testnet */
+  paxosFaucet: "https://faucet.paxos.com/",
+} as const;
+
 export function networkByChainId(chainId: number): Network | undefined {
   return Object.values(networks).find((n) => n.chainId === chainId);
 }

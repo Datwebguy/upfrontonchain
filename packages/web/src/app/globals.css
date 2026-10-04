@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens from DESIGN.md §1. scripts/contrast.mjs reads the hex values below and checks every text and
+ * background pair against WCAG AA, so change colours here and run `npm run check:contrast`.
+ */
+:root {
+  --ink: #111311;
+  --bone: #f3efe6;
+  --paper: #fbf9f4;
+  --signal: #ff5a1f;
+  --moss: #1f4d3a;
+  --sky: #c9def2;
+  --graphite: #5d605b;
+  --line: #e2dccf;
+
+  /* Signal is 2.7:1 on Bone, too faint for text. Orange text on light backgrounds uses this darker shade. */
+  --signal-text: #b73a0a;
+
+  /* The dark theme: Ink with Bone text and the same Signal. */
+  --card-dark: #1a1d1a;
+  --line-dark: #2c302c;
+  --muted-dark: #a3a69f;
+  --moss-light: #6fbf98;
+
+  /* Semantic tokens, light. The website is always light. */
+  --bg: var(--bone);
+  --card: var(--paper);
+  --fg: var(--ink);
+  --muted: var(--graphite);
+  --border: var(--line);
+  --accent-text: var(--signal-text);
+  --positive: var(--moss);
+  color-scheme: light;
+}
+
+/* The app has light and dark themes. */
+[data-theme="dark"] {
+  --bg: var(--ink);
+  --card: var(--card-dark);
+  --fg: var(--bone);
+  --muted: var(--muted-dark);
+  --border: var(--line-dark);
+  --accent-text: var(--signal);
+  --positive: var(--moss-light);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-bone: var(--bone);
+  --color-paper: var(--paper);
+  --color-signal: var(--signal);
+  --color-moss: var(--moss);
+  --color-sky: var(--sky);
+  --color-graphite: var(--graphite);
+  --color-line: var(--line);
+  --color-muted-dark: var(--muted-dark);
+  --color-line-dark: var(--line-dark);
+
+  --color-bg: var(--bg);
+  --color-card: var(--card);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent-text);
+  --color-positive: var(--positive);
+
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
+}
+
+html {
+  background: var(--bg);
+  color: var(--fg);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Inside the app, body copy is 15px. */
+.app-shell {
+  font-size: 15px;
+}
+
+/* Every amount, fee and percentage: Geist Mono with tabular figures, so numbers line up and don't jump. */
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* One word per headline at most, in Instrument Serif italic. */
+.accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* Visible focus ring on every interactive element, in the Signal family and AA against its background. */
+:focus-visible {
+  outline: 3px solid var(--accent-text);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skeletons in the shape of the content. No spinners on full pages. */
+.skeleton {
+  background: linear-gradient(90deg, var(--border), color-mix(in srgb, var(--border) 50%, transparent), var(--border));
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+  border-radius: 6px;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* The fee stream in the hero: lines drift left to right. */
+@keyframes stream {
+  to {
+    stroke-dashoffset: -64;
+  }
+}
+
+/* Every animation has a reduced-motion version: final states, no movement. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
