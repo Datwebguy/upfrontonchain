@@ -94,6 +94,12 @@ The explorer also lists Edel lending receipt tokens (eTSLA, variableDebtTSLA and
 
 **Official hackathon resources** (from the HackQuest page):
 - Get started: https://docs.arbitrum.io/welcome/get-started
+- Arbitrum docs (home): https://docs.arbitrum.io/
+- Robinhood Chain docs: https://docs.robinhood.com/chain/
+- Bridge quickstart / bridge: https://bridge.arbitrum.io/
+- Stylus docs: https://docs.arbitrum.io/stylus
+- Stylus gentle introduction: https://docs.arbitrum.io/stylus/gentle-introduction
+- OpenZeppelin Solidity contracts: https://github.com/OpenZeppelin/openzeppelin-contracts
 - Gentle introduction: https://docs.arbitrum.io/welcome/arbitrum-gentle-introduction
 - Solidity quickstart: https://docs.arbitrum.io/build-decentralized-apps/quickstart-solidity-remix
 - Oracles: https://docs.arbitrum.io/for-devs/oracles/oracles-content-map
@@ -111,6 +117,7 @@ The explorer also lists Edel lending receipt tokens (eTSLA, variableDebtTSLA and
 - Arbitrum Sepolia ETH: https://arbitrum.faucet.dev/, https://faucet.quicknode.com/arbitrum/sepolia, https://www.l2faucet.com/arbitrum
 - Ethereum Sepolia ETH (then bridge): https://sepoliafaucet.com/, https://www.infura.io/faucet/sepolia, https://sepolia-faucet.pk910.de/
 - Test USDG: https://faucet.paxos.com/
+- Arbitrum Sepolia USDC (Circle): https://faucet.circle.com/
 - Robinhood Chain: https://faucet.testnet.chain.robinhood.com/
 
 **Arbitrum One RPCs:** https://arb1.arbitrum.io/rpc, https://rpc.ankr.com/arbitrum, https://arbitrum.llamarpc.com
