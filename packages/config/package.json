@@ -1,0 +1,12 @@
+{
+  "name": "@upfront/config",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Chain ids, RPC URLs and contract addresses. The only place they are written down.",
+  "license": "MIT",
+  "scripts": {
+    "check": "node --check networks.ts && node --check print-env.ts",
+    "print-env": "node print-env.ts"
+  }
+}
