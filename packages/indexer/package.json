@@ -1,0 +1,24 @@
+{
+  "name": "@upfront/indexer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Reads Upfront's chain events into a small database for history, charts and totals. It stores nothing the chain doesn't say.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning src/main.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --disable-warning=ExperimentalWarning --test test/*.test.ts",
+    "test:e2e": "node --disable-warning=ExperimentalWarning --test test/e2e/*.test.ts"
+  },
+  "dependencies": {
+    "viem": "2.57.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "typescript": "5.9.3"
+  }
+}
