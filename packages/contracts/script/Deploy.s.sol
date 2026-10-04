@@ -67,6 +67,9 @@ contract Deploy is Script, DeployLogic {
         vm.serializeAddress(k, "lenderVault", address(d.vault));
         vm.serializeBytes32(k, "hookSalt", d.salt);
         string memory json = vm.serializeUint(k, "startBlock", block.number);
-        vm.writeJson(json, string.concat("deployments/", vm.toString(block.chainid), ".json"));
+        // DEPLOYMENT_FILE lets a test deployment write somewhere else, so it can never overwrite a real record.
+        string memory file =
+            vm.envOr("DEPLOYMENT_FILE", string.concat("deployments/", vm.toString(block.chainid), ".json"));
+        vm.writeJson(json, file);
     }
 }
