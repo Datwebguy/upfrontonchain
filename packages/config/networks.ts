@@ -110,7 +110,14 @@ export const networks = {
     // Source: https://docs.paxos.com/guides/stablecoin/usdg/testnet
     usdg: "0xFFC95faa3d63Cde504a05B567C600B78C0b41892",
     usdgDecimals: 6,
-    upfront: null,
+    // Deployed with packages/contracts/script/Deploy.s.sol. Record: packages/contracts/deployments/421614.json
+    upfront: {
+      hook: "0x9B27c8a7aF5fBAc8B3773831c89a0A4e8D7b20cC",
+      launcher: "0x2b8b153cA7E6001531770Eeb22ab2dDc81647742",
+      advanceDesk: "0x507a1Bf69af37397Aa0273f9BF7dFcf909792b09",
+      lenderVault: "0x6B686695f99899f170E34A518395430557b1A663",
+      startBlock: 11843056,
+    },
   },
 } as const satisfies Record<NetworkKey, Network>;
 

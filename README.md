@@ -6,7 +6,7 @@ Upfront launches trading pools on Arbitrum and Robinhood Chain that pay their ow
 
 [@upfrontonchain](https://x.com/upfrontonchain) · Built on Arbitrum and Robinhood Chain · Paid in USDG
 
-> **Status:** in development. Nothing is deployed yet. Contract addresses will be listed under [Deployments](#deployments) once they're live.
+> **Status:** deployed on Robinhood Chain testnet and Arbitrum Sepolia. See [Deployments](#deployments).
 
 ---
 
@@ -53,7 +53,10 @@ Not deployed yet. Each address will link to its explorer page once live.
 
 | Network | Contract | Address |
 |---|---|---|
-| Arbitrum Sepolia (421614) | UpfrontHook · UpfrontLauncher · AdvanceDesk · LenderVault | — |
+| Arbitrum Sepolia (421614) | UpfrontHook | [0x9B27…20cC](https://sepolia.arbiscan.io/address/0x9B27c8a7aF5fBAc8B3773831c89a0A4e8D7b20cC) |
+| | UpfrontLauncher | [0x2b8b…7742](https://sepolia.arbiscan.io/address/0x2b8b153cA7E6001531770Eeb22ab2dDc81647742) |
+| | AdvanceDesk | [0x507a…2b09](https://sepolia.arbiscan.io/address/0x507a1Bf69af37397Aa0273f9BF7dFcf909792b09) |
+| | LenderVault | [0x6B68…A663](https://sepolia.arbiscan.io/address/0x6B686695f99899f170E34A518395430557b1A663) |
 | Robinhood Chain testnet (46630) | UpfrontHook | [0x5CC2…60CC](https://explorer.testnet.chain.robinhood.com/address/0x5CC2a9f05516fBc5B8C52b19BA40E1D111d760CC) |
 | | UpfrontLauncher | [0x2b8b…7742](https://explorer.testnet.chain.robinhood.com/address/0x2b8b153cA7E6001531770Eeb22ab2dDc81647742) |
 | | AdvanceDesk | [0x507a…2b09](https://explorer.testnet.chain.robinhood.com/address/0x507a1Bf69af37397Aa0273f9BF7dFcf909792b09) |
