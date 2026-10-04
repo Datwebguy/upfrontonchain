@@ -69,6 +69,24 @@ forge build
 forge test
 ```
 
+Deploy (dry run first, then add `--broadcast` and a keystore account):
+
+```bash
+cd packages/contracts
+eval "$(node ../config/print-env.ts robinhoodTestnet)"   # addresses come from packages/config/networks.ts
+export TREASURY=<multisig> ADMIN=<multisig>
+forge script script/Deploy.s.sol --rpc-url $RPC_URL --sender <deployer>
+```
+
+The script mines the hook's address so it encodes exactly the flags it needs, deploys the four contracts, wires them and asserts the result. After a real broadcast it writes `deployments/<chainId>.json`: copy the addresses into `packages/config/networks.ts` and the table below.
+
+Fork tests run the whole flow against the real Robinhood Chain testnet contracts:
+
+```bash
+eval "$(node ../config/print-env.ts robinhoodTestnet)"
+forge test --match-path 'test/fork/*' --fork-url $RH_TESTNET_RPC
+```
+
 The website, app and indexer are not built yet. The planned stack:
 - website and app: Next.js, wagmi and viem,
 - history: an event indexer.
